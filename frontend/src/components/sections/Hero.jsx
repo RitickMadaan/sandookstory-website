@@ -1,8 +1,9 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
+import { publicAsset } from "../../lib/assets";
 import { waLink } from "../../lib/whatsapp";
 
 // Brand-supplied banner photo: a wedding setup with the Sandook Story trunks.
-const HERO_IMG = "/img/banner.jpg";
+const HERO_IMG = publicAsset("/resources/images/banner.jpg");
 
 export default function Hero() {
   return (

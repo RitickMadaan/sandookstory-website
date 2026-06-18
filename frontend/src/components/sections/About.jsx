@@ -1,5 +1,7 @@
+import { publicAsset } from "../../lib/assets";
+
 const STORY_IMG =
-  "https://customer-assets.emergentagent.com/job_heirloom-trunk/artifacts/1aifxngh_WhatsApp%20Image%202026-05-14%20at%2014.29.59.jpeg";
+  publicAsset("/resources/images/founders.jpeg");
 
 export default function About() {
   return (

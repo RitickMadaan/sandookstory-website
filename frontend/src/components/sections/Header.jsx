@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { publicAsset } from "../../lib/assets";
 import { waLink } from "../../lib/whatsapp";
 
 const links = [
@@ -32,7 +33,7 @@ export default function Header() {
       <div className="px-5 md:px-12 lg:px-20 py-2.5 md:py-3 flex items-center justify-between gap-4">
         <a href="#top" data-testid="site-logo" className="block">
           <img
-            src="/img/logo-mark.png"
+            src={publicAsset("/resources/images/logo-mark.png")}
             alt="Sandook Story"
             className="h-12 md:h-16 w-auto object-contain"
           />
