@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #F6F0E8;
+    color: #2C2A29;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background: #7A1E2C;
+    color: #F6F0E8;
+}
+
+@layer base {
+    :root {
+        --background: 34 38% 94%;
+        --foreground: 20 4% 16%;
+        --card: 34 38% 94%;
+        --card-foreground: 20 4% 16%;
+        --popover: 34 38% 94%;
+        --popover-foreground: 20 4% 16%;
+        --primary: 350 60% 30%;
+        --primary-foreground: 34 38% 94%;
+        --secondary: 28 32% 87%;
+        --secondary-foreground: 20 4% 16%;
+        --muted: 28 32% 87%;
+        --muted-foreground: 20 4% 35%;
+        --accent: 36 45% 58%;
+        --accent-foreground: 20 4% 16%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 34 38% 94%;
+        --border: 30 25% 84%;
+        --input: 30 25% 84%;
+        --ring: 350 60% 30%;
+        --radius: 0.25rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 500;
+        letter-spacing: -0.005em;
+    }
+}
+
+/* ─── Decorative utilities ─── */
+.sundook-divider {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #7A1E2C;
+    font-family: "Inter", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.sundook-divider::before,
+.sundook-divider::after {
+    content: "";
+    width: 30px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+}
+
+.filigree-corner {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    border: 1px solid #C6A062;
+    opacity: 0.55;
+    pointer-events: none;
+}
+.filigree-corner::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid currentColor;
+    opacity: 0.5;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+}
+
+/* Subtle gold star ornament */
+.ornament-star {
+    color: #C6A062;
+    display: inline-block;
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
