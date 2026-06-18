@@ -31,11 +31,15 @@ export default function Header() {
       }`}
     >
       <div className="px-5 md:px-12 lg:px-20 py-2.5 md:py-3 flex items-center justify-between gap-4">
-        <a href="#top" data-testid="site-logo" className="block">
+        <a
+          href="#top"
+          data-testid="site-logo"
+          className="flex h-16 md:h-20 w-36 md:w-44 items-center"
+        >
           <img
-            src={publicAsset("/resources/images/logo-mark.png")}
+            src={publicAsset("/resources/images/header-logo.png")}
             alt="Sandook Story"
-            className="h-12 md:h-16 w-auto object-contain"
+            className="h-14 md:h-16 w-auto object-contain"
           />
         </a>
 
