@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { publicAsset } from "../../lib/assets";
 import { waLink } from "../../lib/whatsapp";
 
 // NOTE: Product photos are placeholders until the customer-supplied images arrive.
@@ -11,7 +12,7 @@ const products = [
     description:
       "Our flagship bridal sandook for the first‑generation owners embracing their roots. Regal on the outside, roomy on the inside — to carry your legacy with you as you head into a new phase of your life. And to one day reminisce and pass down to your next generations.",
     size: "Flagship · Bridal Trunk",
-    img: "/img/maharani.jpg",
+    img: publicAsset("/resources/images/maharani.jpg"),
   },
   {
     id: "madhubala",
@@ -20,7 +21,7 @@ const products = [
     description:
       "Bring us your family trunk, and we will bring it back to life — silky smooth fabric, an antique‑polished metal finish, and details customised to fit your story. Carry the soul of what was inherited, while still making it yours.",
     size: "Bespoke Restoration · We travel for collection",
-    img: "/img/madhubala.jpg",
+    img: publicAsset("/resources/images/madhubala.jpg"),
   },
   {
     id: "noor",
@@ -29,7 +30,7 @@ const products = [
     description:
       "A dainty handcrafted box — perfect as a gift for the bride or her bridal party. Made for extra bindis, last‑minute pins, lipsticks, choodas, kalliras and all the tiny things that will forever be part of their wedding story.",
     size: "Petite · Shagun & Shringar",
-    img: "/img/noor.jpg",
+    img: publicAsset("/resources/images/noor.jpg"),
   },
 ];
 

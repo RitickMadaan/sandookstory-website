@@ -1,4 +1,5 @@
 import { ArrowRight, Instagram, Mail, MessageCircle } from "lucide-react";
+import { publicAsset } from "../../lib/assets";
 import {
   EMAIL,
   INSTAGRAM_HANDLE,
@@ -86,7 +87,7 @@ export default function FinalCTA() {
 
       <div className="relative mt-16 pt-7 border-t border-sundook-ivory/20 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5">
         <img
-          src="/img/logo-banner.png"
+          src={publicAsset("/resources/images/logo-banner.png")}
           alt="Sandook Story"
           className="h-10 md:h-12 w-auto object-contain opacity-95"
         />
