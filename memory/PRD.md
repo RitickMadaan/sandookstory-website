@@ -1,19 +1,19 @@
-# SUNDOOK — From the Heart of a Mother
+# Sandook Story — From the Heart of a Mother
 
 ## Original Problem Statement
 Build a polished, modern landing page for a mother-daughter brand designing personalised bridal sandooks (heirloom trunks) inspired by the Indian sandook tradition. Sections required: Hero, About Us, Product Line (3 products), Customisation & Quality, Gallery/Testimonials, Process timeline, Contact CTA.
 
 ## User Choices
-- **Brand name:** SUNDOOK — FROM THE HEART OF A MOTHER
+- **Brand name:** Sandook Story
 - **Contact mechanism:** "Enquire on WhatsApp" (no backend storage)
 - **Imagery:** Tasteful placeholders for now; user will supply real images later
-- **Contact details:** Placeholder phone / email / Instagram
+- **Contact details:** WhatsApp, email, and Instagram are configured in `frontend/src/lib/whatsapp.js`
 
 ## Architecture
-- Static single-page React site (CRA + craco). No backend endpoints used.
+- Static single-page React site (CRA + CRACO). No backend is required or present.
 - All CTAs deep-link to `https://wa.me/<phone>?text=<prefilled message>` via `lib/whatsapp.js`.
 - Sections componentised under `frontend/src/components/sections/`.
-- Tailwind extended with a SUNDOOK color palette (ivory/blush/sage/maroon) and fonts Cormorant Garamond + Manrope.
+- Tailwind is extended with the Sandook Story palette. Runtime images and fonts are local under `frontend/public/resources`.
 
 ## User Personas
 - **The Bride** — discovering heirloom trunk for her own wedding
@@ -22,30 +22,29 @@ Build a polished, modern landing page for a mother-daughter brand designing pers
 
 ## What's Been Implemented (2025-12)
 - Sticky glassmorphism header with anchor nav + mobile menu
-- Hero with bridal-trunk background, ivory wash for legibility (mobile-tuned), "Join the Waiting List" + "Explore the Collection" CTAs
-- About Us section — mother-daughter story, stats, pull-quote, framed image with filigree corners
-- Products section — three cards (Bridal Keepsake Trunk, Trousseau Trunk, Heirloom Restoration Service) each with image, dimensions and WhatsApp "Request a Quote"
+- Hero with bridal-trunk background, ivory wash for legibility, and WhatsApp CTA
+- About section — mother-daughter story with locally hosted founder image and filigree corners
+- Products section — Maharani, Madhubala, and Noor cards with locally hosted images and WhatsApp enquiry links
 - Customisation & Craft section — 6 craft pillars in bento grid + brand-words marquee
 - Gallery & Testimonials — Embla carousel with 3 testimonial slides + prev/next + dot nav
-- Process timeline — 5 numbered steps (Inquiry → Consultation → Deposit → Production → Delivery)
 - Final CTA on maroon background — urgency line, WhatsApp + email CTAs, contact cards (WhatsApp / Email / Instagram)
 - Footer with brand mark and copyright line
-- Mobile responsive (verified at 390×844)
+- GitHub Pages workflow for deploying the static `frontend/build` artifact
 - All interactive elements carry `data-testid` attributes
 
 ## Tested
-- Iteration 1 (frontend): 10/10 functional checks passed; minor mobile subhead clipping fixed post-test.
+- Static production build passes with `npm run build`.
+- Local browser smoke test passes: page loads, console is clean, images/fonts load from `/resources`, and no removed branding remains.
 
 ## Prioritized Backlog
-- **P1** Replace placeholder Unsplash/AI imagery with real workshop and customer photos when the founder provides them
-- **P1** Wire real WhatsApp number, email, Instagram handle into `/app/frontend/src/lib/whatsapp.js`
-- **P2** Add an Instagram feed strip below the gallery (Instagram Basic Display API)
-- **P2** Add a tiny "Order Tracker" page so deposited clients see weekly progress photos
-- **P2** SEO meta tags, OpenGraph image, structured data (Organization + Product)
-- **P3** Add a discreet "lead form" alternative to WhatsApp for international buyers without WA
+- **P1** Replace placeholder or temporary imagery with final brand-approved local images in `frontend/public/resources/images`
+- **P1** Keep WhatsApp number, email, and Instagram handle current in `frontend/src/lib/whatsapp.js`
+- **P2** SEO meta tags, OpenGraph image, and structured data (Organization + Product)
+- **P2** Add an Instagram link/preview section only if it can remain static and privacy-friendly
+- **P3** Add a static contact alternative for international buyers without WhatsApp, such as a mailto CTA
 - **P3** Multilingual (Hindi) toggle
 
 ## Next Tasks
-1. Drop in real images & contact details
-2. Optional: light analytics (already has PostHog from template)
-3. Decide if a "first batch" countdown banner would help urgency
+1. Drop in final brand-approved images.
+2. Confirm contact details before launch.
+3. Enable GitHub Pages from GitHub Actions in repository settings.
