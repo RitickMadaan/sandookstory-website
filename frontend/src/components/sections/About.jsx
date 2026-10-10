@@ -16,7 +16,7 @@ export default function About() {
           <div className="relative aspect-[4/5] overflow-hidden">
             <img
               src={STORY_IMG}
-              alt="Maa and beti — the founders of Sandook Story"
+              alt="Maa and beti, the founders of Sandook Story"
               className="w-full h-full object-cover object-top"
             />
           </div>
@@ -53,7 +53,7 @@ export default function About() {
             </p>
 
             <p>
-              That is when Maa thought of my dadi&rsquo;s sandook — the one her
+              That is when Maa thought of my dadi&rsquo;s sandook, the one her
               mother had lovingly packed for her wedding, making sure she never
               left without a piece of home.
             </p>
@@ -65,7 +65,7 @@ export default function About() {
               had travelled across Delhi, Madhya Pradesh and Rajasthan with our
               family. She lined it with soft suede, polished the old metal, used
               fabric from her own saree, and engraved the name my dadi lovingly
-              called me — <em>Madhubala</em>.
+              called me: <em>Madhubala</em>.
             </p>
 
             <p>It was never meant to become a business.</p>
@@ -73,7 +73,7 @@ export default function About() {
             <p>
               But when we shared a reel of this process, it reached 3 million
               people. Brides, mothers and sisters wrote to us asking the same
-              thing — <em>“How can I get a sandook made for my wedding?”</em>
+              thing: <em>“How can I get a sandook made for my wedding?”</em>
             </p>
 
             <p className="text-sundook-maroon">
