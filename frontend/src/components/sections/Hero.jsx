@@ -1,40 +1,88 @@
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowDown, ArrowRight, Pause, Play } from "lucide-react";
 import { publicAsset } from "../../lib/assets";
 import { waLink } from "../../lib/whatsapp";
 
-// Brand-supplied banner photo: a wedding setup with the Sandook Story trunks.
-const HERO_IMG = publicAsset("/resources/images/banner.jpg");
+// Brand-supplied hero banner film (H.264): a woman in a teal sari with the
+// handcrafted Sandook Story trunks. Plays muted, inline, and on loop.
+const HERO_VIDEO = publicAsset("/resources/hero-img-0041.m4v");
+// Brand-supplied hero still — poster fallback while the film loads and for
+// reduced-motion visitors who keep playback paused.
+const HERO_IMAGE = publicAsset("/resources/images/hero-sari-trunks.png");
+
+// Some browsers ignore the muted attribute until the DOM property is
+// assigned, so set it directly before play() for reliable muted autoplay.
+function startPlayback(video) {
+  video.muted = true;
+  const playback = video.play();
+  if (playback !== undefined) {
+    playback.catch(() => {
+      // Autoplay was blocked — the poster still shows and the pause/play
+      // control remains available to start the film manually.
+    });
+  }
+}
 
 export default function Hero() {
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Autoplay the banner film unless the visitor prefers reduced motion —
+  // then it stays paused on its poster still.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    startPlayback(video);
+  }, []);
+
+  const togglePlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      startPlayback(video);
+    } else {
+      video.pause();
+    }
+  };
+
   return (
     <section
       id="top"
       data-testid="hero-section"
       className="relative w-full min-h-[100vh] overflow-hidden bg-sundook-blush"
     >
-      {/* Background image */}
-      <img
-        src={HERO_IMG}
-        alt="A Sandook Story wedding setup of handcrafted bridal trunks"
-        data-testid="hero-banner-image"
+      {/* Background film — muted looping brand video behind the editorial overlays */}
+      <video
+        ref={videoRef}
+        src={HERO_VIDEO}
+        poster={HERO_IMAGE}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-label="Woman in a teal sari with handcrafted sandook trunks"
+        data-testid="hero-banner-video"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
         className="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-        decoding="async"
       />
 
-      {/* Editorial warm wash — solid on the left text panel, fading image in on the right */}
-      <div
-        className="absolute inset-0 md:hidden"
-        style={{ backgroundColor: "rgba(246, 240, 232, 0.94)" }}
-      />
+      {/* Editorial warm wash — softened so the film reads through while copy stays legible */}
+      <div className="absolute inset-0 md:hidden bg-sundook-ivory/55" />
       <div
         className="absolute inset-0 hidden md:block"
         style={{
           background:
-            "linear-gradient(to right, #F6F0E8 0%, #F6F0E8 38%, rgba(246,240,232,0.9) 52%, rgba(246,240,232,0.35) 74%, rgba(246,240,232,0) 94%)",
+            "linear-gradient(to right, rgba(246,240,232,0.92) 0%, rgba(246,240,232,0.78) 28%, rgba(246,240,232,0.56) 42%, rgba(246,240,232,0.32) 58%, rgba(246,240,232,0) 76%)",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-sundook-ivory/30 via-transparent to-sundook-ivory/55" />
+      <div className="absolute inset-0 bg-gradient-to-b from-sundook-ivory/15 via-transparent to-sundook-ivory/30" />
 
       {/* Thin gold filigree top line */}
       <div className="absolute top-24 left-6 right-6 md:left-12 md:right-12 lg:left-24 lg:right-24 h-px bg-sundook-gold/40 z-10" />
@@ -70,7 +118,7 @@ export default function Hero() {
             className="mt-7 font-sans text-[0.95rem] md:text-base text-sundook-ink/80 max-w-[48ch] leading-[1.75]"
           >
             Customised, handcrafted sandooks for your daughter to carry the legacy
-            of her home with her — as she steps into the journey of building her own.
+            of her home with her as she steps into the journey of building her own.
           </p>
 
           <div className="mt-10">
@@ -114,6 +162,21 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Film pause/play control */}
+      <button
+        type="button"
+        onClick={togglePlayback}
+        data-testid="hero-video-toggle"
+        aria-label={isPlaying ? "Pause background film" : "Play background film"}
+        className="absolute bottom-6 right-6 md:bottom-8 md:right-12 lg:right-24 z-20 w-11 h-11 bg-sundook-ivory/95 backdrop-blur-sm border border-sundook-ink/40 flex items-center justify-center text-sundook-ink hover:bg-sundook-maroon hover:border-sundook-maroon hover:text-sundook-ivory transition-colors duration-300"
+      >
+        {isPlaying ? (
+          <Pause size={18} strokeWidth={1.5} />
+        ) : (
+          <Play size={18} strokeWidth={1.5} />
+        )}
+      </button>
     </section>
   );
 }
