@@ -9,7 +9,7 @@ const features = [
   {
     icon: Sparkles,
     title: "Unique, Just Like You",
-    body: "Your wedding dates, your family motifs, your colour palette, your little quirks — everything customised to feel perfect for your big day.",
+    body: "Your wedding dates, your family motifs, your colour palette, your little quirks. Everything is customised to feel perfect for your big day.",
   },
   {
     icon: InfinityIcon,
@@ -19,7 +19,7 @@ const features = [
   {
     icon: Clock,
     title: "Perfected With Time",
-    body: "Each trunk takes 3 to 4 weeks to make. During that time, you receive progress photos — every bit of care that goes into your sandook.",
+    body: "Each trunk takes 3 to 4 weeks to make. During that time, you receive progress photos showing every bit of care that goes into your sandook.",
   },
   {
     icon: MapPin,
