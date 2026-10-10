@@ -10,27 +10,30 @@ const products = [
     name: "Maharani Sandook",
     tagline: "For those paving their legacy.",
     description:
-      "Our flagship bridal sandook for the first‑generation owners embracing their roots. Regal on the outside, roomy on the inside — to carry your legacy with you as you head into a new phase of your life. And to one day reminisce and pass down to your next generations.",
+      "Our flagship bridal sandook for the first‑generation owners embracing their roots. Regal on the outside, roomy on the inside. Made to carry your legacy with you as you head into a new phase of your life. And to one day reminisce and pass down to your next generations.",
     size: "Flagship · Bridal Trunk",
     img: publicAsset("/resources/images/maharani.jpg"),
+    video: publicAsset("/resources/maharani-sandook.m4v"),
   },
   {
     id: "madhubala",
     name: "Madhubala Sandook",
     tagline: "For the sandook already waiting in your home.",
     description:
-      "Bring us your family trunk, and we will bring it back to life — silky smooth fabric, an antique‑polished metal finish, and details customised to fit your story. Carry the soul of what was inherited, while still making it yours.",
-    size: "Bespoke Restoration · We travel for collection",
+      "Bring us your family trunk, and we will bring it back to life: silky smooth fabric, an antique‑polished metal finish, and details customised to fit your story. Carry the soul of what was inherited, while still making it yours.",
+    size: "Bespoke Restoration · Giving new life to your family legacy",
     img: publicAsset("/resources/images/madhubala.jpg"),
+    video: publicAsset("/resources/madhubala-sandook.m4v"),
   },
   {
     id: "noor",
     name: "Noor Collection",
     tagline: "For shringar and shagun.",
     description:
-      "A dainty handcrafted box — perfect as a gift for the bride or her bridal party. Made for extra bindis, last‑minute pins, lipsticks, choodas, kalliras and all the tiny things that will forever be part of their wedding story.",
+      "A dainty handcrafted box, perfect as a gift for the bride or her bridal party. Made for extra bindis, last‑minute pins, lipsticks, choodas, kalliras and all the tiny things that will forever be part of their wedding story.",
     size: "Petite · Shagun & Shringar",
     img: publicAsset("/resources/images/noor.jpg"),
+    video: publicAsset("/resources/noor-collection.mp4"),
   },
 ];
 
