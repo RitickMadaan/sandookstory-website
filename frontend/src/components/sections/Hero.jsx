@@ -1,95 +1,32 @@
-import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowRight, Pause, Play } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { publicAsset } from "../../lib/assets";
 import { waLink } from "../../lib/whatsapp";
 
-// Brand-supplied hero banner film (H.264): a woman in a teal sari with the
-// handcrafted Sandook Story trunks. Plays muted, inline, and on loop.
-const HERO_VIDEO = publicAsset("/resources/hero-img-0041.m4v");
-// Brand-supplied hero still — poster fallback while the film loads and for
-// reduced-motion visitors who keep playback paused.
-const HERO_IMAGE = publicAsset("/resources/images/hero-sari-trunks.png");
-
-// Some browsers ignore the muted attribute until the DOM property is
-// assigned, so set it directly before play() for reliable muted autoplay.
-function startPlayback(video) {
-  video.muted = true;
-  const playback = video.play();
-  if (playback !== undefined) {
-    playback.catch(() => {
-      // Autoplay was blocked — the poster still shows and the pause/play
-      // control remains available to start the film manually.
-    });
-  }
-}
+// Brand-supplied collection banner (1600×900) — covered behind the
+// frosted-glass copy panel; object-top keeps the top of the art visible.
+const HERO_IMAGE = publicAsset("/resources/images/collection-hero.jpg");
 
 export default function Hero() {
-  const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  // Autoplay the banner film unless the visitor prefers reduced motion —
-  // then it stays paused on its poster still.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    startPlayback(video);
-  }, []);
-
-  const togglePlayback = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.paused) {
-      startPlayback(video);
-    } else {
-      video.pause();
-    }
-  };
-
   return (
     <section
       id="top"
       data-testid="hero-section"
-      className="relative w-full min-h-[100vh] overflow-hidden bg-sundook-blush"
+      className="w-full bg-sundook-ivory pt-28"
     >
-      {/* Background film — muted looping brand video behind the editorial overlays */}
-      <video
-        ref={videoRef}
-        src={HERO_VIDEO}
-        poster={HERO_IMAGE}
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-label="Woman in a teal sari with handcrafted sandook trunks"
-        data-testid="hero-banner-video"
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      {/* Collection banner — relative cover area sized by the copy panel */}
+      <div className="relative flow-root w-full md:min-h-[850px]">
+        <img
+          src={HERO_IMAGE}
+          alt="Sandook Story collection banner featuring the Maharani, Madhubala, Sasu Ma Ka Baksa, and Noor trousseau trunks"
+          width={1600}
+          height={900}
+          loading="eager"
+          data-testid="hero-banner-image"
+          className="absolute inset-0 w-full h-full object-cover object-center md:object-top"
+        />
 
-      {/* Editorial warm wash — softened so the film reads through while copy stays legible */}
-      <div className="absolute inset-0 md:hidden bg-sundook-ivory/55" />
-      <div
-        className="absolute inset-0 hidden md:block"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(246,240,232,0.92) 0%, rgba(246,240,232,0.78) 28%, rgba(246,240,232,0.56) 42%, rgba(246,240,232,0.32) 58%, rgba(246,240,232,0) 76%)",
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-sundook-ivory/15 via-transparent to-sundook-ivory/30" />
-
-      {/* Thin gold filigree top line */}
-      <div className="absolute top-24 left-6 right-6 md:left-12 md:right-12 lg:left-24 lg:right-24 h-px bg-sundook-gold/40 z-10" />
-
-      {/* Content */}
-      <div className="relative z-10 min-h-[100vh] flex items-center px-6 md:px-12 lg:px-20 xl:px-28 pt-32 pb-20 md:pb-24">
-        <div className="max-w-2xl">
+        {/* Frosted-glass copy panel — original hero copy over the art */}
+        <div className="relative z-10 max-w-2xl mx-6 md:mx-12 lg:mx-20 my-8 md:my-12 p-6 md:p-10 bg-sundook-ivory/70 backdrop-blur-md border border-white/50">
           <p data-testid="hero-eyebrow" className="sundook-divider mb-9">
             <span className="sm:hidden">A Mumma–Beti Venture</span>
             <span className="hidden sm:inline">A Mumma–Beti Venture · From the Heart of a Mother</span>
@@ -97,7 +34,7 @@ export default function Hero() {
 
           <h1
             data-testid="hero-headline"
-            className="font-serif font-medium text-[2.6rem] sm:text-5xl md:text-6xl lg:text-[4.6rem] xl:text-[5.4rem] text-sundook-ink leading-[1] tracking-tight"
+            className="font-serif font-medium text-[2.6rem] sm:text-5xl md:text-6xl lg:text-[4.6rem] xl:text-[5.4rem] text-sundook-ink leading-[1] tracking-tight max-w-[15ch]"
           >
             Born from a
             <br />
@@ -162,21 +99,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Film pause/play control */}
-      <button
-        type="button"
-        onClick={togglePlayback}
-        data-testid="hero-video-toggle"
-        aria-label={isPlaying ? "Pause background film" : "Play background film"}
-        className="absolute bottom-6 right-6 md:bottom-8 md:right-12 lg:right-24 z-20 w-11 h-11 bg-sundook-ivory/95 backdrop-blur-sm border border-sundook-ink/40 flex items-center justify-center text-sundook-ink hover:bg-sundook-maroon hover:border-sundook-maroon hover:text-sundook-ivory transition-colors duration-300"
-      >
-        {isPlaying ? (
-          <Pause size={18} strokeWidth={1.5} />
-        ) : (
-          <Play size={18} strokeWidth={1.5} />
-        )}
-      </button>
     </section>
   );
 }

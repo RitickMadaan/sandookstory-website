@@ -26,7 +26,8 @@ new work should trace back to a token or pattern listed here.
   weight 500, tight tracking, italic `<em>` accents in maroon.
 - **Body/labels/buttons:** Inter (`font-sans`).
 - Scale (existing usage):
-  - Hero h1: `text-[2.6rem]` → `xl:text-[5.4rem]`, `leading-[1]`
+  - Hero h1: `text-[2.6rem]` → `xl:text-[5.4rem]`, `leading-[1]`, capped at
+    `max-w-[15ch]`
   - Section h2: `text-[2.2rem]` → `lg:text-[4rem]`, `leading-[1.05–1.1]`
   - Body: `text-[0.95rem]`–`base`, `leading-[1.75–1.85]`, measure 44–60ch
   - Eyebrow/labels: `text-[0.6–0.7rem]`, `tracking-[0.22–0.36em]`, uppercase
@@ -47,11 +48,11 @@ new work should trace back to a token or pattern listed here.
 - **Cards:** 1px `border-sundook-ivory/20` (on maroon) or `border-sundook-line`,
   gold lucide icons, hover border in gold.
 - **Icons:** lucide-react only, `strokeWidth 1.25–1.5`, sizes 14–20.
-- **Hero film control:** square icon button floating over the banner film —
-  `w-11 h-11`, `bg-sundook-ivory/95 backdrop-blur-sm`, 1px
-  `border-sundook-ink/40`, lucide `Pause`/`Play` (18px, `strokeWidth 1.5`),
-  hover fills maroon; `aria-label` toggles "Pause/Play background film" with
-  the live playback state.
+- **Hero glass panel:** hero copy and CTAs sit over the banner art on a
+  frosted-glass panel — `bg-sundook-ivory/70 backdrop-blur-md`, subtle 1px
+  `border-white/50`, square corners, `p-6 md:p-10`, `max-w-2xl`
+  left-anchored (`mx-6 md:mx-12 lg:mx-20`, `my-8 md:my-12`). The hero is
+  static: no film, no playback control.
 - **Testimonial card:** `<figure>` with `bg-sundook-ivory`, 1px
   `border-sundook-line`, square corners, `p-8 md:p-12`. Lucide `Quote` icon
   (26px, `strokeWidth 1.25`, maroon, `aria-hidden`) at top. Body is a
@@ -79,26 +80,24 @@ new work should trace back to a token or pattern listed here.
 - Interactive elements: `transition-colors duration-300` (plus transform on
   icon hovers).
 - Entrances: `fade-up` keyframe (0.8s ease-out).
-- **Hero background:** muted looping brand film — autoplayed programmatically
-  (`video.play()` with the DOM `muted` property assigned first, because some
-  browsers ignore the `muted` attribute alone). `prefers-reduced-motion`
-  leaves playback paused on the poster still; the pause/play control mirrors
-  playback state.
+- **Hero:** static — banner image with no hero-specific motion (no autoplay
+  film, no playback control); only the global interactive transitions above
+  apply.
 
 ## Media
 
 - All runtime media lives under `public/resources` and is referenced through
   `publicAsset()` (`src/lib/assets.js`) so URLs stay GitHub-Pages-relative.
-- Hero: `resources/hero-img-0041.m4v` — brand banner film (H.264, portrait
-  1080×1920, ~6.1s), muted + looping + `playsInline`, `preload="auto"`,
-  autoplayed programmatically for reliability. Poster fallback:
-  `resources/images/hero-sari-trunks.png` (the former static hero still).
-  Overlays (tuned so the film reads through): mobile ivory scrim
-  `bg-sundook-ivory/55` (0.55); desktop left-to-right ivory gradient —
-  `rgba(246,240,232,0.92) 0% → 0.78 28% → 0.56 42% → 0.32 58% → 0 76%`
-  (never fully opaque, below 0.5 by the horizontal midpoint, transparent
-  from 76%); vertical wash
-  `from-sundook-ivory/15 via-transparent to-sundook-ivory/30`.
+- Hero: `resources/images/collection-hero.jpg` — brand collection banner
+  (JPEG, 1600×900) for the Maharani, Madhubala, Sasu Ma Ka Baksa, and Noor
+  trunks. Rendered as the hero backdrop inside a relative container below
+  the fixed header (`pt-28` clearance, ~104px header): `absolute inset-0
+  w-full h-full object-cover` with explicit `width={1600} height={900}` and
+  `loading="eager"`; `object-center` on mobile, `object-top` (center-top)
+  from `md` up so the top of the art stays visible. The container is sized
+  by the copy panel — `md:min-h-[850px]` desktop hero area that grows with
+  the panel, so nothing clips; the frosted-glass copy panel sits on the art
+  (see Components), not below it.
 - Madhubala product card: `resources/madhubala-sandook.m4v` — restoration
   film (H.264, portrait 608×1080, ~9.8s) shown via the Products card
   conditional media markup (`autoPlay`, `muted`, `loop`, `playsInline`,
