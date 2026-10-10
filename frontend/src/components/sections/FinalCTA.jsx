@@ -28,7 +28,7 @@ export default function FinalCTA() {
       <div className="relative max-w-4xl mx-auto text-center">
         <p className="font-sans text-[0.65rem] md:text-[0.7rem] tracking-[0.36em] uppercase text-sundook-gold flex items-center justify-center gap-3">
           <span className="text-sundook-gold">✦</span>
-          Hurry — only 12 slots available
+          Hurry, only 12 slots available
           <span className="text-sundook-gold">✦</span>
         </p>
         <h2
