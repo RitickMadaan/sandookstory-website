@@ -89,10 +89,10 @@ new work should trace back to a token or pattern listed here.
 - All runtime media lives under `public/resources` and is referenced through
   `publicAsset()` (`src/lib/assets.js`) so URLs stay GitHub-Pages-relative.
 - Hero: `resources/images/collection-hero.jpg` — brand collection banner
-  (JPEG, 1600×900) for the Maharani, Madhubala, Sasu Ma Ka Baksa, and Noor
-  trunks. Rendered as the hero backdrop inside a relative container below
+  (JPEG, 1672×941) of the ornate heirloom trunk collection on marble
+  plinths. Rendered as the hero backdrop inside a relative container below
   the fixed header (`pt-28` clearance, ~104px header): `absolute inset-0
-  w-full h-full object-cover` with explicit `width={1600} height={900}` and
+  w-full h-full object-cover` with explicit `width={1672} height={941}` and
   `loading="eager"`; `object-center` on mobile, `object-top` (center-top)
   from `md` up so the top of the art stays visible. The container is sized
   by the copy panel — `md:min-h-[850px]` desktop hero area that grows with

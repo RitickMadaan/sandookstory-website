@@ -2,7 +2,7 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import { publicAsset } from "../../lib/assets";
 import { waLink } from "../../lib/whatsapp";
 
-// Brand-supplied collection banner (1600×900) — covered behind the
+// Brand-supplied ornate trunk collection (1672×941) — covered behind the
 // frosted-glass copy panel; object-top keeps the top of the art visible.
 const HERO_IMAGE = publicAsset("/resources/images/collection-hero.jpg");
 
@@ -17,9 +17,9 @@ export default function Hero() {
       <div className="relative flow-root w-full md:min-h-[850px]">
         <img
           src={HERO_IMAGE}
-          alt="Sandook Story collection banner featuring the Maharani, Madhubala, Sasu Ma Ka Baksa, and Noor trousseau trunks"
-          width={1600}
-          height={900}
+          alt="Sandook Story's ornate heirloom trunk collection displayed on marble plinths"
+          width={1672}
+          height={941}
           loading="eager"
           data-testid="hero-banner-image"
           className="absolute inset-0 w-full h-full object-cover object-center md:object-top"
