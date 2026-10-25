@@ -48,10 +48,15 @@ new work should trace back to a token or pattern listed here.
 - **Primary CTA:** `bg-sundook-maroon text-sundook-ivory`, uppercase
   `tracking-[0.22em]`, `px-8/9 py-4`, lucide arrow with
   `group-hover:translate-x-1`, hover `bg-sundook-maroon-deep`.
+- **WhatsApp CTAs:** every button that opens WhatsApp carries the brand
+  `WhatsAppIcon` (`components/icons/WhatsAppIcon.jsx`, inline SVG,
+  `fill="currentColor"` so it adopts the button's text color) at 14–16px
+  before the label.
 - **Ghost/link CTA:** serif italic, `text-sundook-mute` → maroon hover.
 - **Cards:** 1px `border-sundook-ivory/20` (on maroon) or `border-sundook-line`,
   gold lucide icons, hover border in gold.
-- **Icons:** lucide-react only, `strokeWidth 1.25–1.5`, sizes 14–20.
+- **Icons:** lucide-react only, `strokeWidth 1.25–1.5`, sizes 14–20; the sole
+  exception is `WhatsAppIcon` (official brand glyph, inline SVG).
 - **Hero:** the supplied opening banner appears first at every breakpoint as
   full-bleed art — a 3:2 `object-left` crop below `lg` (keeps the baked-in
   headline lettering and the sitter in frame) and the complete 2:1 artwork
@@ -60,7 +65,18 @@ new work should trace back to a token or pattern listed here.
   beneath sits on one seamless ivory surface: no hairline on the seam, only
   a bottom hairline on the panel; full-width primary CTA on mobile and three
   evenly spaced proof labels.
-  The hero is static: no film, no playback control.
+  On `lg`+ the copy panel is a two-column composition — copy block left,
+  founder film right at native 9:16 (max-width 380px) dressed with two
+  `.filigree-corner` gold ornaments (top-left, bottom-right) instead of a
+  hard border; on mobile the film follows the copy at natural ratio. Ivory
+  gradient scrims (`h-10 md:h-12`) melt the film's top and bottom edges into
+  the panel, echoing the banner treatment.
+  Playback: autoplay + loop. The film stays muted by default; when it is
+  fully inside the viewport it unmutes to 40% volume (best-effort under
+  browser autoplay policy) and auto-mutes again below 25% visibility. A
+  square 36px mute/unmute chip (ivory, hairline, maroon `VolumeX`/`Volume2`
+  icon, bottom-left of the film, `data-testid="film-sound-toggle"`) gives
+  direct control; a manual toggle is respected between auto transitions.
 - **Mobile header control:** menu toggle uses a minimum `w-11 h-11` touch
   target with a visible maroon focus ring while retaining the 24px icon.
 - **Testimonial card:** `<figure>` with `bg-sundook-ivory`, 1px
@@ -93,9 +109,9 @@ new work should trace back to a token or pattern listed here.
   anchored sections clear the fixed header; reduced-motion preference restores
   immediate scrolling.
 - Entrances: `fade-up` keyframe (0.8s ease-out).
-- **Hero:** static — banner image with no hero-specific motion (no autoplay
-  film, no playback control); only the global interactive transitions above
-  apply.
+- **Hero:** static banner with no hero-specific motion; the copy panel's
+  founder film carries the shared autoplay/mute/loop film behaviour; only the
+  global interactive transitions above apply.
 
 ## Media
 
@@ -111,6 +127,12 @@ new work should trace back to a token or pattern listed here.
   `public/index.html` (`%PUBLIC_URL%` …, `fetchpriority="high"`) as the LCP
   image. From `lg` up the container ratio equals the intrinsic 2:1, so the
   entire artwork stays visible edge-to-edge with no crop.
+- Hero copy film: `resources/mother-touch-film.m4v` — founders' reel
+  (H.264, portrait 608×1080, ~25.7s) beside the hero copy from `lg` up
+  (below it on mobile), square-cornered `border-sundook-line` frame,
+  `aspect-[9/16]`, conditional media markup (`autoPlay`, `muted`, `loop`,
+  `playsInline`, `preload="metadata"`, no controls). Poster fallback:
+  `resources/images/mother-touch-film.jpg`.
 - Madhubala product card: `resources/madhubala-sandook.m4v` — restoration
   film (H.264, portrait 608×1080, ~9.8s) shown via the Products card
   conditional media markup (`autoPlay`, `muted`, `loop`, `playsInline`,
