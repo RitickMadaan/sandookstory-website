@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { publicAsset } from "../../lib/assets";
 import { waLink } from "../../lib/whatsapp";
+import WhatsAppIcon from "../icons/WhatsAppIcon";
 
 const links = [
   { label: "Story", href: "#about" },
@@ -64,8 +65,9 @@ export default function Header() {
             target="_top"
             rel="noopener noreferrer"
             data-testid="header-enquire-cta"
-            className="font-sans text-[0.7rem] tracking-[0.24em] uppercase bg-sundook-maroon text-sundook-ivory px-5 py-3 hover:bg-sundook-maroon-deep transition-colors duration-300"
+            className="inline-flex items-center gap-2 font-sans text-[0.7rem] tracking-[0.24em] uppercase bg-sundook-maroon text-sundook-ivory px-5 py-3 hover:bg-sundook-maroon-deep transition-colors duration-300"
           >
+            <WhatsAppIcon size={14} />
             Enquire
           </a>
         </div>
@@ -104,8 +106,9 @@ export default function Header() {
               target="_top"
               rel="noopener noreferrer"
               data-testid="mobile-enquire-cta"
-              className="mt-4 inline-flex min-h-11 items-center justify-center text-center font-sans text-[0.72rem] tracking-[0.22em] uppercase bg-sundook-maroon text-sundook-ivory px-6 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sundook-gold focus-visible:ring-offset-2 focus-visible:ring-offset-sundook-ivory"
+              className="mt-4 inline-flex min-h-11 items-center justify-center gap-2 text-center font-sans text-[0.72rem] tracking-[0.22em] uppercase bg-sundook-maroon text-sundook-ivory px-6 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sundook-gold focus-visible:ring-offset-2 focus-visible:ring-offset-sundook-ivory"
             >
+              <WhatsAppIcon size={14} />
               Enquire on WhatsApp
             </a>
           </div>

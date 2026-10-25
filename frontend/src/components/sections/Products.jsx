@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { publicAsset } from "../../lib/assets";
 import { waLink } from "../../lib/whatsapp";
+import WhatsAppIcon from "../icons/WhatsAppIcon";
 
 // NOTE: Product photos are placeholders until the customer-supplied images arrive.
 // Maps existing assets to the new product roster from the brand copy doc.
@@ -139,7 +140,10 @@ export default function Products() {
             data-testid="products-section-cta"
             className="group inline-flex items-center gap-3 bg-sundook-maroon text-sundook-ivory px-9 py-4 font-sans text-[0.75rem] tracking-[0.22em] uppercase hover:bg-sundook-maroon-deep transition-colors duration-300"
           >
-            Begin Your Sandook Story
+            <span className="inline-flex items-center gap-2.5">
+              <WhatsAppIcon size={15} />
+              Begin Your Sandook Story
+            </span>
             <ArrowUpRight
               size={16}
               strokeWidth={1.5}

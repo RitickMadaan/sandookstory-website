@@ -1,5 +1,6 @@
 import { ArrowRight, Instagram, Mail, MessageCircle } from "lucide-react";
 import { publicAsset } from "../../lib/assets";
+import WhatsAppIcon from "../icons/WhatsAppIcon";
 import {
   EMAIL,
   INSTAGRAM_HANDLE,
@@ -50,7 +51,7 @@ export default function FinalCTA() {
             data-testid="final-whatsapp-cta"
             className="group inline-flex items-center gap-3 bg-sundook-ivory text-sundook-maroon px-9 py-4 font-sans text-[0.72rem] md:text-[0.78rem] tracking-[0.22em] uppercase hover:bg-sundook-blush transition-colors duration-300"
           >
-            <MessageCircle size={18} strokeWidth={1.5} />
+            <WhatsAppIcon size={16} />
             Begin Your Sandook Story
             <ArrowRight
               size={16}
