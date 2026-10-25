@@ -84,6 +84,7 @@ export default function Hero() {
       </div>
 
       <div
+        id="our-story"
         data-testid="hero-copy"
         className="relative z-10 w-full px-6 pt-8 pb-10 bg-sundook-ivory border-b border-sundook-line md:px-12 md:pt-9 md:pb-12 lg:px-20 lg:py-16"
       >

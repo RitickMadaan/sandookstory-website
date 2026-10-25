@@ -5,6 +5,7 @@ import { waLink } from "../../lib/whatsapp";
 import WhatsAppIcon from "../icons/WhatsAppIcon";
 
 const links = [
+  { label: "Watch the Film", href: "#our-story" },
   { label: "Story", href: "#about" },
   { label: "Collection", href: "#products" },
   { label: "Craft", href: "#craft" },
