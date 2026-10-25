@@ -73,8 +73,10 @@ export default function Header() {
         <button
           data-testid="mobile-menu-toggle"
           onClick={() => setOpen((v) => !v)}
-          className="lg:hidden text-sundook-maroon"
+          className="lg:hidden -mr-2 inline-flex h-11 w-11 items-center justify-center text-sundook-maroon focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sundook-maroon focus-visible:ring-offset-2 focus-visible:ring-offset-sundook-ivory"
           aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
           {open ? <X strokeWidth={1.5} /> : <Menu strokeWidth={1.5} />}
         </button>
@@ -82,16 +84,17 @@ export default function Header() {
 
       {open && (
         <div
+          id="mobile-navigation"
           data-testid="mobile-menu"
           className="lg:hidden bg-sundook-ivory/97 backdrop-blur-md border-t border-sundook-line"
         >
-          <div className="px-6 py-6 flex flex-col gap-5">
+          <div className="px-6 py-5 flex flex-col gap-1">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-sans text-sm tracking-[0.18em] uppercase text-sundook-ink"
+                className="flex min-h-11 items-center border-b border-sundook-line font-sans text-sm tracking-[0.18em] uppercase text-sundook-ink focus-visible:outline-none focus-visible:text-sundook-maroon"
               >
                 {l.label}
               </a>
@@ -101,7 +104,7 @@ export default function Header() {
               target="_top"
               rel="noopener noreferrer"
               data-testid="mobile-enquire-cta"
-              className="mt-3 inline-block text-center font-sans text-[0.72rem] tracking-[0.22em] uppercase bg-sundook-maroon text-sundook-ivory px-6 py-3"
+              className="mt-4 inline-flex min-h-11 items-center justify-center text-center font-sans text-[0.72rem] tracking-[0.22em] uppercase bg-sundook-maroon text-sundook-ivory px-6 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sundook-gold focus-visible:ring-offset-2 focus-visible:ring-offset-sundook-ivory"
             >
               Enquire on WhatsApp
             </a>

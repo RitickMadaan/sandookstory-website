@@ -11,6 +11,17 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 ::selection {
     background: #7A1E2C;
     color: #F6F0E8;
