@@ -71,7 +71,9 @@ new work should trace back to a token or pattern listed here.
   hard border; on mobile the film follows the copy at natural ratio. Ivory
   gradient scrims (`h-10 md:h-12`) melt the film's top and bottom edges into
   the panel, echoing the banner treatment.
-  Playback: autoplay + loop. The film stays muted by default; when it is
+  Playback: autoplay + loop. iOS WebKit blocks inline autoplay, so the film
+  additionally resumes on the page's first touch, scroll, or click. The film
+  stays muted by default; when it is
   fully inside the viewport it unmutes to 40% volume (best-effort under
   browser autoplay policy) and auto-mutes again below 25% visibility. A
   square 36px mute/unmute chip (ivory, hairline, maroon `VolumeX`/`Volume2`

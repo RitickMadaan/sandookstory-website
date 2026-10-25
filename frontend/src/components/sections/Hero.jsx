@@ -53,6 +53,25 @@ export default function Hero() {
     }
   }, [soundOn]);
 
+  // iOS WebKit blocks inline autoplay even when muted, so resume on first gesture.
+  useEffect(() => {
+    const film = filmRef.current;
+    if (!film) {
+      return undefined;
+    }
+    const resume = () => {
+      film.play().catch(() => {});
+    };
+    const gestures = ["touchstart", "touchend", "click", "scroll"];
+    gestures.forEach((g) =>
+      window.addEventListener(g, resume, { once: true, passive: true })
+    );
+    return () =>
+      gestures.forEach((g) =>
+        window.removeEventListener(g, resume, { once: false })
+      );
+  }, []);
+
   return (
     <section
       id="top"
