@@ -63,11 +63,8 @@ export default function Gallery() {
               <em className="font-serif italic text-sundook-maroon">
                 after the unboxing.
               </em>
-            </h2>
-            <p className="font-sans text-[0.68rem] tracking-[0.12em] text-sundook-mute mt-4">
-              Excerpts lightly edited for length and clarity.
-            </p>
-          </div>
+             </h2>
+           </div>
 
           <div className="flex items-center gap-3">
             <button
