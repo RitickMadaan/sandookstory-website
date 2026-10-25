@@ -13,11 +13,11 @@ export default function About() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
         {/* Image */}
         <div className="lg:col-span-5 relative lg:sticky lg:top-28">
-          <div className="relative aspect-[4/5] overflow-hidden">
+          <div className="relative aspect-[3/4] overflow-hidden">
             <img
               src={STORY_IMG}
-              alt="Maa and beti, the founders of Sandook Story"
-              className="w-full h-full object-cover object-top"
+              alt="Maa and beti doing aarti before a covered wedding trunk"
+              className="w-full h-full object-cover"
             />
           </div>
           <div className="filigree-corner -top-3 -left-3" />
