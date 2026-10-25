@@ -35,6 +35,10 @@ new work should trace back to a token or pattern listed here.
 ## Spacing & layout
 
 - Tailwind default scale; sections: `py-16 md:py-24`, `px-6 md:px-12 lg:px-20`.
+- Mobile hero stacks full-bleed banner art above the copy panel: a 3:2 window
+  of the supplied artwork, then an ivory copy surface with `px-6 pt-9 pb-10`.
+  Compact mobile gaps preserve the content hierarchy without turning the hero
+  into a full-screen text panel.
 - Content measures: `max-w-2xl` (hero copy), `max-w-6xl`/`max-w-7xl` (grids).
 - **Corners are square** — CTAs and cards carry no border radius; the editorial
   aesthetic depends on it. (`--radius: 0.25rem` exists only for shadcn tokens.)
@@ -48,11 +52,17 @@ new work should trace back to a token or pattern listed here.
 - **Cards:** 1px `border-sundook-ivory/20` (on maroon) or `border-sundook-line`,
   gold lucide icons, hover border in gold.
 - **Icons:** lucide-react only, `strokeWidth 1.25–1.5`, sizes 14–20.
-- **Hero glass panel:** hero copy and CTAs sit over the banner art on a
-  frosted-glass panel — `bg-sundook-ivory/70 backdrop-blur-md`, subtle 1px
-  `border-white/50`, square corners, `p-6 md:p-10`, `max-w-2xl`
-  left-anchored (`mx-6 md:mx-12 lg:mx-20`, `my-8 md:my-12`). The hero is
-  static: no film, no playback control.
+- **Hero:** the supplied opening banner appears first at every breakpoint as
+  full-bleed art — a 3:2 `object-left` crop below `lg` (keeps the baked-in
+  headline lettering and the sitter in frame) and the complete 2:1 artwork
+  from `lg` up. Gradient scrims in `sundook-ivory` melt the art's top and
+  bottom edges into the page background, so the copy panel that follows
+  beneath sits on one seamless ivory surface: no hairline on the seam, only
+  a bottom hairline on the panel; full-width primary CTA on mobile and three
+  evenly spaced proof labels.
+  The hero is static: no film, no playback control.
+- **Mobile header control:** menu toggle uses a minimum `w-11 h-11` touch
+  target with a visible maroon focus ring while retaining the 24px icon.
 - **Testimonial card:** `<figure>` with `bg-sundook-ivory`, 1px
   `border-sundook-line`, square corners, `p-8 md:p-12`. Lucide `Quote` icon
   (26px, `strokeWidth 1.25`, maroon, `aria-hidden`) at top. Body is a
@@ -79,6 +89,9 @@ new work should trace back to a token or pattern listed here.
 
 - Interactive elements: `transition-colors duration-300` (plus transform on
   icon hovers).
+- In-page navigation uses smooth scrolling with `scroll-padding-top: 7rem` so
+  anchored sections clear the fixed header; reduced-motion preference restores
+  immediate scrolling.
 - Entrances: `fade-up` keyframe (0.8s ease-out).
 - **Hero:** static — banner image with no hero-specific motion (no autoplay
   film, no playback control); only the global interactive transitions above
@@ -88,16 +101,16 @@ new work should trace back to a token or pattern listed here.
 
 - All runtime media lives under `public/resources` and is referenced through
   `publicAsset()` (`src/lib/assets.js`) so URLs stay GitHub-Pages-relative.
-- Hero: `resources/images/collection-hero.jpg` — brand collection banner
-  (JPEG, 1672×941) of the ornate heirloom trunk collection on marble
-  plinths. Rendered as the hero backdrop inside a relative container below
-  the fixed header (`pt-28` clearance, ~104px header): `absolute inset-0
-  w-full h-full object-cover` with explicit `width={1672} height={941}` and
-  `loading="eager"`; `object-center` on mobile, `object-top` (center-top)
-  from `md` up so the top of the art stays visible. The container is sized
-  by the copy panel — `md:min-h-[850px]` desktop hero area that grows with
-  the panel, so nothing clips; the frosted-glass copy panel sits on the art
-  (see Components), not below it.
+- Hero: `resources/images/hero-next-story.jpg` — brand-supplied opening
+  banner (JPEG, 1774×887, exact 2:1) reading "The next story could be
+  yours." over a mother seated behind the heirloom trunks. First visible
+  content on the page below the fixed header (`pt-28` clearance, ~104px
+  header), inside a `aspect-[3/2] lg:aspect-[2/1]` container rendered with
+  `object-cover object-left`, explicit `width={1774} height={887}`,
+  `loading="eager"`, `fetchPriority="high"`. Preloaded from
+  `public/index.html` (`%PUBLIC_URL%` …, `fetchpriority="high"`) as the LCP
+  image. From `lg` up the container ratio equals the intrinsic 2:1, so the
+  entire artwork stays visible edge-to-edge with no crop.
 - Madhubala product card: `resources/madhubala-sandook.m4v` — restoration
   film (H.264, portrait 608×1080, ~9.8s) shown via the Products card
   conditional media markup (`autoPlay`, `muted`, `loop`, `playsInline`,
