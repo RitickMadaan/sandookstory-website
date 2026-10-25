@@ -1,12 +1,58 @@
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowDown, ArrowRight, Volume2, VolumeX } from "lucide-react";
 import { publicAsset } from "../../lib/assets";
 import { waLink } from "../../lib/whatsapp";
+import WhatsAppIcon from "../icons/WhatsAppIcon";
 
 // Brand-supplied opening banner (1774×887). Mobile shows a 3:2 object-left
 // crop so the lettering and the sitter stay in frame.
 const HERO_IMAGE = publicAsset("/resources/images/hero-next-story.jpg");
+const HERO_FILM = publicAsset("/resources/mother-touch-film.m4v");
+const HERO_FILM_POSTER = publicAsset("/resources/images/mother-touch-film.jpg");
 
 export default function Hero() {
+  const filmRef = useRef(null);
+  const [soundOn, setSoundOn] = useState(false);
+
+  useEffect(() => {
+    const film = filmRef.current;
+    if (!film || typeof IntersectionObserver === "undefined") {
+      return undefined;
+    }
+    const watcher = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.intersectionRatio > 0.98) {
+            setSoundOn(true);
+          } else if (entry.intersectionRatio < 0.25) {
+            setSoundOn(false);
+          }
+        }
+      },
+      { threshold: [0, 0.25, 0.5, 0.98, 1] }
+    );
+    watcher.observe(film);
+    return () => watcher.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const film = filmRef.current;
+    if (!film) {
+      return undefined;
+    }
+    film.muted = !soundOn;
+    film.volume = 0.4;
+    if (soundOn) {
+      const audible = film.play();
+      if (audible instanceof Promise) {
+        audible.catch(() => {
+          film.muted = true;
+          setSoundOn(false);
+        });
+      }
+    }
+  }, [soundOn]);
+
   return (
     <section
       id="top"
@@ -41,7 +87,8 @@ export default function Hero() {
         data-testid="hero-copy"
         className="relative z-10 w-full px-6 pt-8 pb-10 bg-sundook-ivory border-b border-sundook-line md:px-12 md:pt-9 md:pb-12 lg:px-20 lg:py-16"
       >
-        <div className="max-w-2xl">
+        <div className="lg:grid lg:grid-cols-12 lg:items-center lg:gap-16">
+        <div className="max-w-2xl lg:col-span-8">
           <p data-testid="hero-eyebrow" className="sundook-divider mb-6 md:mb-9">
             <span className="sm:hidden">A Mumma–Beti Venture</span>
             <span className="hidden sm:inline">A Mumma–Beti Venture · From the Heart of a Mother</span>
@@ -83,7 +130,10 @@ export default function Hero() {
               data-testid="hero-preorder-cta"
               className="group flex w-full items-center justify-between gap-3 bg-sundook-maroon text-sundook-ivory px-6 md:inline-flex md:w-auto md:px-9 py-4 font-sans text-[0.72rem] md:text-[0.78rem] tracking-[0.22em] uppercase hover:bg-sundook-maroon-deep transition-colors duration-300"
             >
-              Begin Your Sandook Story
+              <span className="inline-flex items-center gap-2.5">
+                <WhatsAppIcon size={15} />
+                Begin Your Sandook Story
+              </span>
               <ArrowRight
                 size={16}
                 strokeWidth={1.5}
@@ -112,6 +162,54 @@ export default function Hero() {
             <span className="hidden md:inline text-sundook-gold">✦</span>
             <span>100% You</span>
           </div>
+        </div>
+
+        <div className="mt-7 md:mt-9 lg:mt-0 lg:col-span-4">
+          <div className="relative mx-auto w-full max-w-[380px]">
+            <div className="relative overflow-hidden">
+              <video
+                ref={filmRef}
+                data-testid="hero-copy-film"
+                src={HERO_FILM}
+                poster={HERO_FILM_POSTER}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Maa and beti presenting the Budhiya Rani wedding sandook"
+                className="block w-full aspect-[9/16] object-cover bg-sundook-blush"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-sundook-ivory to-transparent md:h-12"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-b from-transparent to-sundook-ivory md:h-12"
+              />
+              <button
+                type="button"
+                data-testid="film-sound-toggle"
+                onClick={() => setSoundOn((v) => !v)}
+                aria-label={soundOn ? "Mute film" : "Unmute film"}
+                aria-pressed={soundOn}
+                className="absolute bottom-3 left-3 inline-flex h-9 w-9 items-center justify-center bg-sundook-ivory/90 backdrop-blur-sm border border-sundook-line text-sundook-maroon hover:bg-sundook-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sundook-maroon transition-colors duration-300"
+              >
+                {soundOn ? (
+                  <Volume2 size={16} strokeWidth={1.5} />
+                ) : (
+                  <VolumeX size={16} strokeWidth={1.5} />
+                )}
+              </button>
+            </div>
+            <div aria-hidden="true" className="filigree-corner -top-3 -left-3" />
+            <div
+              aria-hidden="true"
+              className="filigree-corner -bottom-3 -right-3 rotate-180"
+            />
+          </div>
+        </div>
         </div>
       </div>
     </section>
