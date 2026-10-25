@@ -31,7 +31,7 @@ const products = [
     name: "Noor Collection",
     tagline: "For shringar and shagun.",
     description:
-      "A dainty handcrafted box, perfect as a gift for the bride or her bridal party. Made for extra bindis, last‑minute pins, lipsticks, choodas, kalliras and all the tiny things that will forever be part of their wedding story.",
+      "For every shagun, big or small.\n\nA thoughtfully handcrafted set of three miniature sandooks, each designed for a different gifting tradition. From shagun cloths to jewellery, bangles and shringaar, the Noor Collection brings a little more thought, love and tradition to every celebration.",
     size: "Petite · Shagun & Shringar",
     img: publicAsset("/resources/images/noor.jpg"),
     video: publicAsset("/resources/noor-collection.mp4"),
@@ -102,7 +102,7 @@ export default function Products() {
                 <p className="mt-1.5 font-serif italic text-sundook-maroon text-base md:text-lg">
                   {p.tagline}
                 </p>
-                <p className="mt-4 font-sans text-[0.88rem] text-sundook-ink/75 leading-[1.75]">
+                <p className="mt-4 font-sans text-[0.88rem] text-sundook-ink/75 leading-[1.75] whitespace-pre-line">
                   {p.description}
                 </p>
                 <div className="mt-5 pt-4 border-t border-sundook-line font-sans text-[0.6rem] tracking-[0.26em] uppercase text-sundook-mute">
